@@ -1,2 +1,4 @@
 opencv-python==3.4.3.18
+Pillow>=5.2.0
+tesserocr>=2.2.2
 tqdm==4.26.0

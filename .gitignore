@@ -1,4 +1,6 @@
 *.mp4
 *.png
-.idea
 *.py[cod]
+.idea
+/*.json
+/*.pickle
