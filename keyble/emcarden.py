@@ -28,5 +28,5 @@ def extract_text_image_from_card(img):
     crop_img = crop_img[h // 2 : h, 0:w]
 
     # Extract white enough text
-    crop_img = cv2.inRange(crop_img, 200, 255)
+    crop_img = cv2.inRange(crop_img, 190, 255)
     return crop_img
