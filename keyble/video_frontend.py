@@ -4,7 +4,7 @@ import os
 import cv2
 import tqdm
 
-from keyble.emcarden import crop_card, CardError
+import keyble.emcarden as emc
 
 
 def extract_cards_from_video(input_video, dest_dir):
@@ -18,12 +18,8 @@ def extract_cards_from_video(input_video, dest_dir):
             ret, frame = cap.read()
             if not ret:
                 break
-            try:
-                card = crop_card(frame)
-            except CardError:
-                continue
-            else:
-                filename = os.path.join(dest_dir, 'card%04d.png' % fnum)
+            for cnum, card in enumerate(emc.find_cards(frame)):
+                filename = os.path.join(dest_dir, f'f{fnum:04d}_c{cnum:04d}.png')
                 cv2.imwrite(filename, card)
                 n_cards += 1
-                prog.set_description('%d cards found' % n_cards)
+            prog.set_description('%d cards found' % n_cards)
